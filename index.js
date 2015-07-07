@@ -13,14 +13,14 @@ function ptt(callback){
             if(error && response.statusCode == 200 || !body) { 
                 return ; 
             }
-    
             var $ = cheerio.load(body);
             var result = [];
-            var titles = $("div.r-ent div.title a");
-    
+            // 拆解ptt title
+            var titles = $("div.r-ent div.title a");   
+
             for (var i = 0; i < titles.length; i++) {
                 result.push($(titles[i]).text());
             }
-            console.log(result); 
+            console.log(result);
     });
 };

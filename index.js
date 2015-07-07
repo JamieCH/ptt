@@ -1,10 +1,7 @@
 'use strict';
 
 var request = require("request");
-//var fs = require("fs");
 var cheerio = require("cheerio");
-
-var callback;
 
 module.exports = ptt;
 
@@ -14,7 +11,7 @@ function ptt(callback){
         method: "GET"
         }, function(error, response, body) {
             if(error && response.statusCode == 200 || !body) { 
-                return callback(error); 
+                return ; 
             }
     
             var $ = cheerio.load(body);
@@ -24,10 +21,6 @@ function ptt(callback){
             for (var i = 0; i < titles.length; i++) {
                 result.push($(titles[i]).text());
             }
-            
-            callback(null, result);
-                
-           //fs.writeFileSync("result.json", JSON.stringify(result));
+            console.log(result); 
     });
 };
-
